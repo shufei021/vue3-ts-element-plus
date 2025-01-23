@@ -16,7 +16,7 @@ import App from './App.vue'
  import 'vxe-table/lib/style.css'
  // 导入element-plus
  import ElementPlus from 'element-plus'
-
+ import '@/components/CustomTable/extend/extend_vxe.js'
  import 'element-plus/dist/index.css'
  // ...可选 UI
  import VxeUI from 'vxe-pc-ui'

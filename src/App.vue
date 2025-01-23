@@ -4,4 +4,9 @@
   <router-view></router-view>
 </template>
 
-<style scoped></style>
+<style scoped>
+body {
+  height: 100%;
+  background-color: #ccc;
+}
+</style>

@@ -7,10 +7,19 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    copy: typeof import('./src/components/Lesson/index copy.vue')['default']
+    CustomTable: typeof import('./src/components/CustomTable/index.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElInput: typeof import('element-plus/es')['ElInput']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    ElOption: typeof import('element-plus/es')['ElOption']
+    ElSelect: typeof import('element-plus/es')['ElSelect']
+    HelloWorld: typeof import('./src/components/CustomTable/HelloWorld.vue')['default']
+    Input: typeof import('./src/components/CustomTable/components/Input.vue')['default']
+    Lesson: typeof import('./src/components/Lesson/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Segment: typeof import('./src/components/Lesson/components/Segment.vue')['default']
+    Text: typeof import('./src/components/Lesson/components/Text.vue')['default']
+    Txt: typeof import('./src/components/Lesson/components/Txt.vue')['default']
   }
 }

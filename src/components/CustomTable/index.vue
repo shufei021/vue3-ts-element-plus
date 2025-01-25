@@ -105,6 +105,8 @@ const getTableData = () => {
 // 列头配置
 const columnsFormat = (columns) => {
     const { align, headerAlign, footerAlign } = getProp('config.align')
+    const sortBy = getProp('config.sortBy')
+    const titlePrefix = getProp('config.titlePrefix')
 
     return columns.map((item) => {
         if (align?.center?.includes(item.field)) item.align = 'center'
@@ -116,6 +118,16 @@ const columnsFormat = (columns) => {
         if (footerAlign?.center?.includes(item.field)) item.footerAlign = 'center'
         if (footerAlign?.left?.includes(item.field)) item.footerAlign = 'left'
         if (footerAlign?.right?.includes(item.field)) item.footerAlign = 'right'
+
+        // 排序
+        if (Object.keys(sortBy).includes(item.field)) {
+            item.sortable = true
+            item.sortBy = sortBy[item.field]
+        }
+        // 标题提示
+        if (Object.keys(titlePrefix).includes(item.field)) {
+            item.titlePrefix = titlePrefix[item.field]
+        }
         // item.formatter = ['formatDate', 2, true]
         // 处理表体筛选项
         // if (getProp('config.filterDropdownConfig')?.()?.[item.field]) {

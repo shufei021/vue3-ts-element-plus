@@ -56,15 +56,12 @@ const config = reactive({
             right: [] // 右对齐的表尾
         }
     },
-    // 单元格过滤渲染
-    filterDropdownConfig: {},
-    columnKeysConfig: {
-        listPriceColKeys: [],
-        listMoneyColKeys: [], // 金额列keys，配置后该列显示数据自动补零及￥符号
-        sortColKeys: [],
-        resizeColKeys: []
+    // 排序
+    sortBy: {
+        age: ({ row }) => row.age
     },
-    toolTipMap: {
+    // 表头提示
+    titlePrefix: {
         // 表头过滤组件配置 toolTipConfig
         name: {
             title: '平台预估订单佣金',
@@ -79,6 +76,15 @@ const config = reactive({
             content: '平台收货入库后计算供应商应结算金额'
         }
     },
+    // 单元格过滤渲染
+    filterDropdownConfig: {},
+    columnKeysConfig: {
+        listPriceColKeys: [],
+        listMoneyColKeys: [], // 金额列keys，配置后该列显示数据自动补零及￥符号
+        sortColKeys: [],
+        resizeColKeys: []
+    },
+
     gridOptions,
     getColumns: () => {
         return [
@@ -86,13 +92,7 @@ const config = reactive({
                 title: '姓名',
                 field: 'name',
                 width: 100,
-                align: 'center',
-
-                titlePrefix: {
-                    content: '金额列keys，配置后该列显示数据自动补零及￥符号',
-                    useHTML: false,
-                    icon: 'vxe-icon--question'
-                }
+                align: 'center'
             },
             {
                 title: '性别',
@@ -105,8 +105,6 @@ const config = reactive({
                 field: 'age',
                 width: 100,
                 align: 'center',
-                sortable: true,
-                sortBy: ({ row }) => row.age,
                 filterRender: true
             },
             {

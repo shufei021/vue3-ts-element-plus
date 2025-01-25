@@ -1,6 +1,6 @@
 <template>
     <div>
-        <vxe-grid show-footer v-bind="getProp('config.gridOptions')" ref="vxeGridRef" draggable></vxe-grid>
+        <vxe-grid show-footer v-bind="getProp('config.gridOptions')" :footer-data="footerData" ref="vxeGridRef" draggable></vxe-grid>
     </div>
 </template>
 <script lang="tsx" setup>
@@ -58,21 +58,21 @@ const getSeqColumn = () => {
                       ]
                     : []
             },
-            default: ({ rowIndex }) => {
+            default: ({ $rowIndex }) => {
                 return isSeq ? (
-                    <div style="text-align:center">{rowIndex + 1}</div>
+                    <div style="text-align:center">{$rowIndex + 1}</div>
                 ) : (
                     <div class="row-action">
                         <span
                             class="row-action-btn"
                             onClick={() => {
-                                emit('plus', rowIndex)
+                                emit('plus', $rowIndex)
                             }}
                         ></span>
                         <span
                             class="row-action-btn add"
                             onClick={() => {
-                                emit('add', rowIndex)
+                                emit('add', $rowIndex)
                             }}
                         ></span>
                     </div>
@@ -116,7 +116,7 @@ const columnsFormat = (columns) => {
         if (footerAlign?.center?.includes(item.field)) item.footerAlign = 'center'
         if (footerAlign?.left?.includes(item.field)) item.footerAlign = 'left'
         if (footerAlign?.right?.includes(item.field)) item.footerAlign = 'right'
-
+        // item.formatter = ['formatDate', 2, true]
         // 处理表体筛选项
         // if (getProp('config.filterDropdownConfig')?.()?.[item.field]) {
         //     item.filterRender = cellFilterRender(item.field)
@@ -129,7 +129,7 @@ const columnsFormat = (columns) => {
         return item
     })
 }
-
+const footerData = ref([{ seq: '合计', age: '282' }])
 onMounted(() => {
     //
     if (vxeGridRef?.value && vxeGridRef?.value.loadColumn) {

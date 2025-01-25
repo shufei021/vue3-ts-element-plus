@@ -7,8 +7,6 @@
 <script lang="tsx" setup>
 import { reactive } from 'vue'
 import { VxeGridProps } from 'vxe-table'
-import aa from 'vxe-table'
-console.log('%c [ aa ]-11', 'font-size:13px; background:pink; color:#bf2c9f;', aa)
 // 定义每行数据的属性类型 即row类型
 interface RowVO {
     id: number
@@ -18,8 +16,10 @@ interface RowVO {
     age: number
     address: string
 }
-const gridOptions = reactive<VxeGridProps<RowVO>>({
+const gridOptions = reactive<VxeGridProps>({
     border: true,
+    rowConfig: { useKey: 'id' },
+    columnConfig: { useKey: 'rowid' },
     editConfig: {
         trigger: 'click', // 单元格编辑状态触发条件 点击
         mode: 'cell' // 编辑模式
@@ -113,33 +113,34 @@ const config = reactive({
                 title: '地址',
                 field: 'address',
                 width: 100,
+                showOverflow: true,
                 align: 'center'
             }
         ]
     },
-    loadData: () => {
+    loadData: (): RowVO[] => {
         return [
             {
                 id: 10001,
-                name: 'Test11',
+                name: '李四',
                 role: 'Develop',
-                sex: 'Man',
+                sex: '♂',
                 age: 28,
-                address: 'test abc'
+                address: '四川省成都市武侯区华府大道7717'
             },
             {
                 id: 10002,
-                name: 'Test222222',
+                name: '张三',
                 role: 'Test',
-                sex: 'Women',
+                sex: '♂',
                 age: 22,
                 address: 'Guangzhou'
             },
             {
                 id: 10003,
-                name: 'Test3333',
+                name: '李雪',
                 role: 'Test',
-                sex: 'Women',
+                sex: '♀',
                 age: 29,
                 address: 'Guangzhou'
             }
